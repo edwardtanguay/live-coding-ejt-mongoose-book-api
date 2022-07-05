@@ -14,9 +14,10 @@
 		- .. [Edit] button for each book
 			- x empty panel-pop-in
 			- x Clear button
-			- .. Save button 
-			- PUT /book/:id
-		- [Add Book] button
+			- x Save button 
+			- x PUT /book/:id
+		- .. [Add Book] button
+		 	- .. refactor form to component
 			- pop-in form
 			- POST /book
 
