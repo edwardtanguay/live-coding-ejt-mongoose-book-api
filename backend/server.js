@@ -1,10 +1,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { Book } from './models/Book.js';
+import cors from 'cors';
 
 mongoose.connect('mongodb://localhost/bookapi');
 
 const app = express();
+app.use(cors());
 const port = 3459;
 
 app.use(express.json());
