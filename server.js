@@ -10,18 +10,35 @@ const port = 3459;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-	res.send(`<h1>Book API</h1>`);
+    res.send(`<h1>Book API</h1>`);
 });
 
 app.post('/book', async (req, res) => {
-	const book = new Book(req.body);
-	await book.save();
-	res.status(200).json({
-		"message": "book created",
-		book
-	});
+    const book = new Book(req.body);
+    await book.save();
+    res.status(200).json({
+        message: 'book created',
+        book
+    });
+});
+
+app.get('/book', async (req, res) => {
+    const books = await Book.find().sort({ title: 1 });
+    res.status(200).json({
+        message: 'fetched all books',
+        books
+    });
+});
+
+app.get('/book/:id', async (req, res) => {
+    const id = req.params.id;
+    const book = await Book.find({ _id: id });
+    res.status(200).json({
+        message: 'fetched book with id ' + id,
+        book
+    });
 });
 
 app.listen(port, () => {
-	console.log(`listening on port: http://localhost:${port}`);
+    console.log(`listening on port: http://localhost:${port}`);
 });
