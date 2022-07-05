@@ -1,0 +1,19 @@
+- .. create React frontend for book API
+	- .. setup: all in one repository
+		- x make API run in /backend
+		- x make backend script
+		- .. setup Vite site in root directory
+		- install npm-run-all
+		- make script: "start" to run backend/frontend
+	- site
+		- show all with images
+			- GET /book
+		- [Delete] button for each book
+			- DELETE /book/:id
+		- [Edit] button for each book
+			- as panel-pop-in
+				- Save and Clear button
+			- PUT /book/:id
+		- [Add Book] button
+			- pop-in form
+			- POST /book
