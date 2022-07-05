@@ -7,9 +7,9 @@
 			- x make script: "start" to run backend/frontend
 	- .. site
 		- x minimalize
-		- .. show all with images
-			- GET /book
-		- [Delete] button for each book
+		- x show all with images
+			- x GET /book
+		- .. [Delete] button for each book
 			- DELETE /book/:id
 		- [Edit] button for each book
 			- as panel-pop-in
