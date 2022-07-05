@@ -6,6 +6,7 @@ const url = 'http://localhost:3459';
 
 function App() {
 	const [books, setBooks] = useState([]);
+  const [fieldTitle, setFieldTitle] = useState('');
 
 	useEffect(() => {
 		(async () => {
@@ -26,6 +27,26 @@ function App() {
 
 	const handleButtonEdit = async (e, book) => {
 		book.editPanelShowing = true;
+    setFieldTitle(book.title);
+		setBooks([...books]);
+	};
+
+	const handleButtonClear = async (e, book) => {
+		book.editPanelShowing = false;
+    setFieldTitle('');
+		setBooks([...books]);
+	};
+
+	const handleButtonSave = async (e, book) => {
+		book.editPanelShowing = false;
+    book.title = fieldTitle;
+  
+		const putUrl = `${url}/book/${book._id}`;
+    await axios.put(putUrl, {
+      title: book.title
+    });
+
+    setFieldTitle('');
 		setBooks([...books]);
 	};
 
@@ -54,6 +75,7 @@ function App() {
 										Delete
 									</button>
 									<button
+                  disabled={book.editPanelShowing}
 										onClick={(e) =>
 											handleButtonEdit(e, book)
 										}
@@ -64,7 +86,10 @@ function App() {
 								{book.editPanelShowing && (
 									<>
 										<div className="editPanel">
-											edit panel
+                      <div className="row">
+                        Title: <input value={fieldTitle} onChange={(e) => setFieldTitle(e.target.value)} />
+                      </div>
+                      <div className="innerButtons">
 											<button
 												onClick={(e) =>
 													handleButtonClear(e, book)
@@ -72,6 +97,14 @@ function App() {
 											>
 												Clear
 											</button>
+											<button
+												onClick={(e) =>
+													handleButtonSave(e, book)
+												}
+											>
+												Save
+											</button>
+                      </div>
 										</div>
 									</>
 								)}

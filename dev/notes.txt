@@ -12,8 +12,9 @@
 		- x [Delete] button for each book
 			- x DELETE /book/:id
 		- .. [Edit] button for each book
-			- .. empty panel-pop-in
-				- Save and Clear button
+			- x empty panel-pop-in
+			- x Clear button
+			- .. Save button 
 			- PUT /book/:id
 		- [Add Book] button
 			- pop-in form
