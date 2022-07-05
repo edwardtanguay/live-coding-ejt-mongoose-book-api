@@ -63,6 +63,16 @@ app.patch('/book/:id', async (req, res) => {
     });
 });
 
+app.delete('/book/:id', async (req, res) => {
+    const id = req.params.id;
+	const book = await Book.find({ _id: id });
+	await Book.deleteOne({ _id: id });
+    res.status(200).json({
+        message: 'deleted book with id=' + id,
+		book
+    });
+});
+
 app.listen(port, () => {
     console.log(`listening on port: http://localhost:${port}`);
 });
