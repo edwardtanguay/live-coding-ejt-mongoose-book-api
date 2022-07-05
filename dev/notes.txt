@@ -10,7 +10,9 @@
 		- x show all with images
 			- x GET /book
 		- .. [Delete] button for each book
-			- DELETE /book/:id
+			- .. DELETE /book/:id
+			- if delete, refresh, otherwise
+				- .. show error
 		- [Edit] button for each book
 			- as panel-pop-in
 				- Save and Clear button
