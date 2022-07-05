@@ -14,6 +14,7 @@ function App() {
 	const [fieldImageUrl, setFieldImageUrl] = useState('');
 	const [fieldBuyUrl, setFieldBuyUrl] = useState('');
 	const [addPanelShowing, setAddPanelShowing] = useState(false);
+  const [addBook, setAddBook] = useState({});
 
 	useEffect(() => {
 		(async () => {
@@ -79,9 +80,9 @@ function App() {
 		setBooks([...books]);
 	};
 
-  const handleAddBook = async (e, book) => {
-    setAddPanelShowing(!addPanelShowing);
-  };
+	const handleAddBook = async (e, book) => {
+		setAddPanelShowing(!addPanelShowing);
+	};
 
 	return (
 		<div className="App">
@@ -93,9 +94,24 @@ function App() {
 				<button className="addBook" onClick={(e) => handleAddBook(e)}>
 					Add Book
 				</button>
-        {addPanelShowing && (
-				<div className="addFormPanel">...add form...</div>
-        )}
+						<EditBookForm
+							formIsShowing={addPanelShowing}
+							fieldTitle={fieldTitle}
+							setFieldTitle={setFieldTitle}
+							fieldDescription={fieldDescription}
+							setFieldDescription={setFieldDescription}
+							fieldNumberOfPages={fieldNumberOfPages}
+							setFieldNumberOfPages={setFieldNumberOfPages}
+							fieldLanguage={fieldLanguage}
+							setFieldLanguage={setFieldLanguage}
+							fieldImageUrl={fieldImageUrl}
+							setFieldImageUrl={setFieldImageUrl}
+							fieldBuyUrl={fieldBuyUrl}
+							setFieldBuyUrl={setFieldBuyUrl}
+							handleButtonClear={handleButtonClear}
+							handleButtonSave={handleButtonSave}
+							addBook={addBook}
+						/>
 			</div>
 
 			<div className="books">
