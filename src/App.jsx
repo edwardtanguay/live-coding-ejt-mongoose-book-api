@@ -109,7 +109,7 @@ function App() {
 									</button>
 								</div>
 								{book.editPanelShowing && (
-									<>
+									<form>
 										<div className="editPanel">
 
 											<div className="row">
@@ -208,7 +208,7 @@ function App() {
 												</button>
 											</div>
 										</div>
-									</>
+									</form>
 								)}
 							</div>
 						</div>
