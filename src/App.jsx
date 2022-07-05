@@ -13,6 +13,7 @@ function App() {
 	const [fieldLanguage, setFieldLanguage] = useState('');
 	const [fieldImageUrl, setFieldImageUrl] = useState('');
 	const [fieldBuyUrl, setFieldBuyUrl] = useState('');
+	const [addPanelShowing, setAddPanelShowing] = useState(false);
 
 	useEffect(() => {
 		(async () => {
@@ -43,7 +44,7 @@ function App() {
 	};
 
 	const handleButtonClear = async (e, book) => {
-    e.preventDefault();
+		e.preventDefault();
 		book.editPanelShowing = false;
 		setFieldTitle('');
 		setFieldDescription('');
@@ -55,7 +56,7 @@ function App() {
 	};
 
 	const handleButtonSave = async (e, book) => {
-    e.preventDefault();
+		e.preventDefault();
 		book.editPanelShowing = false;
 
 		book.title = fieldTitle;
@@ -78,11 +79,24 @@ function App() {
 		setBooks([...books]);
 	};
 
+  const handleAddBook = async (e, book) => {
+    setAddPanelShowing(!addPanelShowing);
+  };
+
 	return (
 		<div className="App">
 			<h1>Book Site</h1>
 
 			<p>There are {books.length} books.</p>
+
+			<div className="addArea">
+				<button className="addBook" onClick={(e) => handleAddBook(e)}>
+					Add Book
+				</button>
+        {addPanelShowing && (
+				<div className="addFormPanel">...add form...</div>
+        )}
+			</div>
 
 			<div className="books">
 				{books.map((book, i) => {
@@ -123,13 +137,13 @@ function App() {
 									}
 									fieldLanguage={fieldLanguage}
 									setFieldLanguage={setFieldLanguage}
-                  fieldImageUrl={fieldImageUrl}
-                  setFieldImageUrl={setFieldImageUrl}
-                  fieldBuyUrl={fieldBuyUrl}
-                  setFieldBuyUrl={setFieldBuyUrl}
-                  handleButtonClear={handleButtonClear}
-                  handleButtonSave={handleButtonSave}
-                  book={book}
+									fieldImageUrl={fieldImageUrl}
+									setFieldImageUrl={setFieldImageUrl}
+									fieldBuyUrl={fieldBuyUrl}
+									setFieldBuyUrl={setFieldBuyUrl}
+									handleButtonClear={handleButtonClear}
+									handleButtonSave={handleButtonSave}
+									book={book}
 								/>
 							</div>
 						</div>
