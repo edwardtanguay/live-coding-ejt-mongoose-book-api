@@ -7,19 +7,18 @@ mongoose.connect('mongodb://localhost/bookapi');
 const app = express();
 const port = 3459;
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
 	res.send(`<h1>Book API</h1>`);
 });
 
 app.post('/book', async (req, res) => {
-	const book = new Book({
-		title: 'ttt',
-		description: 'ddd',
-		numberOfPages: 999
-	});
+	const book = new Book(req.body);
 	await book.save();
 	res.status(200).json({
-		"message": "book created"
+		"message": "book created",
+		book
 	});
 });
 
