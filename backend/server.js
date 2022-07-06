@@ -6,7 +6,9 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_CONNECTION);
+const MONGODB_CONNECTION = process.env.MONGODB_CONNECTION || 'mongodb://localhost/bookapi';
+
+mongoose.connect(MONGODB_CONNECTION);
 
 const app = express();
 app.use(cors());
