@@ -2,8 +2,11 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { Book } from './models/Book.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
-mongoose.connect('mongodb://localhost/bookapi');
+dotenv.config();
+
+mongoose.connect(process.env.MONGODB_CONNECTION);
 
 const app = express();
 app.use(cors());
